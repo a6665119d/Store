@@ -6,47 +6,15 @@ function initDataBase() {
 }
 // 数据库表的内容
 function initFGdb() {
-	fgDB.transaction(function(tx) { 
+	fgDB.transaction(function(tx) {
         // 用户表
-		tx.executeSql('CREATE TABLE IF NOT EXISTS [user] (id VARCHAR2(32) PRIMARY KEY NOT NULL, name VARCHAR2(32), password VARCHAR2(32), [remark] VARCHAR2(32), [define] VARCHAR2(32))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS [user] (id VARCHAR2(32) PRIMARY KEY NOT NULL, username VARCHAR2(32), password VARCHAR2(32), [remark] VARCHAR2(32), [define] VARCHAR2(32))');
 	}, function() {
         console.log('创建数据库成功!');
     }, function(err) {
 		console.log('创建数据库失败!');
 		console.log(err);
 	});
-}
-/* 查询数据 */
-function getBySql(sql, callBack) {
-    fgDB.executeSql(sql, function(res) {
-        var item;
-        var newData;
-        if (res.rows.length > 0) {
-            item = getSqlItem(res);
-            newData = item;
-        }
-        if (callBack) {
-            callBack(true, newData);
-        }
-    }, function(err) {
-        console.log('error with executeSql in getBySql:' + sql, err);
-        if (callBack) {
-            callBack(false, err);
-        }
-    });
-}
-
-function getSqlItem(res, index) {
-    index = index ? index : 0;
-    return res.rows.item(index);
-}
-function getSqlItems(res) {
-    var reslen = res.rows.length;
-    var datas = [];
-    for(var resIdx=0;resIdx<reslen;resIdx++) {
-        datas.push(getSqlItem(res, resIdx));
-    }
-    return datas;
 }
 /**
 1、数据库名（mydb）
@@ -55,7 +23,7 @@ function getSqlItems(res) {
 4、数据库大小（2*1024*1024）
 */
 var sqliteDB = function( db_name, size ) {
-    var _db = openDatabase(db_name, '1.0.0', '', size ); // 生成或打开数据库
+    var _db = openDatabase(db_name, '1.0.0', '', size );
     var currSql=null;
     return {
         /**
@@ -280,6 +248,7 @@ var sqliteDB = function( db_name, size ) {
         }
     };
 };
+
 /*
 //使用示例：
 //1.获取db对象,连接数据库 test，分配2M大小

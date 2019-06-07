@@ -1,0 +1,41 @@
+/*把默认的外间距设置为0*/
+*{
+	margin: 0;auto;
+}
+
+body{
+	height: 30rem;
+}
+/*设置默认图片*/
+#background{
+  height: 30rem;
+  background-image: url('../image/login_bg.jpg');
+  background-repeat: no-repeat;
+  background-size:100% 100%;
+  -moz-background-size:100% 100%;
+}
+
+#loginForm{
+  padding:1rem 1rem!important;
+  margin-top: 3rem;
+  background: rgba(255,255,255,0.8);
+  border-radius:0.3rem;
+  padding: 0 0.5rem;
+}
+
+#centerRow{
+  justify-content:center;
+}
+
+
+#loginBut{
+  background-color: #009688;
+  color: white;
+}
+
+
+#regBut{
+  background-color: #009688;
+  float: right;
+  color: white;
+}
