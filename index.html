@@ -18,5 +18,16 @@
     // 初始化
     function init(){
         initDataBase(); // 生成数据库
+    };
+    // 生成默认用户1001
+    function createDefaultUser(){
+        var data ={
+            id: createOnlyId(),
+            name: '1001',
+            password: '1001',
+        }
+        UserDao.replaceUser(data,function(success){
+            if(success) console.log('保存成功');
+        })
     }
 </script>

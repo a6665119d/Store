@@ -8,8 +8,9 @@ var UserDao = {
         var sql = "REPLACE INTO user (" + keys.join(",") + ") VALUES (" + values.join(",") + ")";
         getBySql(sql,callback);
     },
-    // 查询用户信息
-    loadUserInfo: function(data, callback){
-
+    // 根据名字查询用户信息
+    loadUserInfoByName: function(name, callback){
+        var sql = "select * from user where name= '" + name + "'";
+        getBySql(sql,callback);
     }
 };
